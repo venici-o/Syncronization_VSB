@@ -11,3 +11,18 @@ void station_init(struct station *station){
     pthread_cond_init(&station->carro_disp, NULL);
     pthread_cond_init(&station->carro_pronto, NULL);
 }
+
+void station_wait_for_car(struct station *station){
+    pthread_mutex_lock(&station->mutex);
+    
+    station->p_aguardando++;
+    
+    while (station->vagas == 0){
+        pthread_cond_wait(&station->carro_disp, &station->mutex);
+    }
+    station->vagas--;
+    station->p_aguardando--;
+    station->p_embarcando++;
+
+    pthread_mutex_unlock(&station->mutex);
+}
