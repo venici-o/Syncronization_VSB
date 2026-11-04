@@ -15,7 +15,8 @@ Desenvolvido em **CachyOS Linux**, com **GCC 16.2.1** e **GNU Make 4.4.1**. Os t
 - `testes/executar.sh` e `testes/validar.sh`: execução da suíte e coleta de evidências.
 - `Makefile`: compilação, testes e limpeza.
 - `resultados/`: logs e capturas; `evidencias_completas.log` reúne as evidências.
-- `vsb.docx`: relatório preenchido no modelo da atividade.
+- `vsb.pdf
+- `: relatório preenchido no modelo da atividade.
 
 ## Compilar, executar e testar
 
