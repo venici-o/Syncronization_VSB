@@ -1,0 +1,101 @@
+Script started on 2026-11-04 19:27:33-03:00 [COMMAND="make test" <not executed on terminal>]
+gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread sync_car.c testes/sync_car-tests.c -Wl,--wrap=pthread_cond_wait -o sync_car-tests
+sh testes/executar.sh
+[RUNNER ORIGINAL]
+car entering station with 29 free seats
+car departed station with 29 new passenger(s) (expected 29)
+car entering station with 48 free seats
+car departed station with 48 new passenger(s) (expected 48)
+car entering station with 6 free seats
+car departed station with 6 new passenger(s) (expected 6)
+car entering station with 44 free seats
+car departed station with 17 new passenger(s) (expected 17)
+Looks good!
+[CENARIOS CONTROLADOS]
+
+[CASO] T01 - estacao vazia e zero vagas | passageiros=0
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=0, embarques esperados=0
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=1
+[OK] T01 - estacao vazia e zero vagas
+
+[CASO] T02 - carro sai vazio e retira vagas residuais | passageiros=0
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=10, embarques esperados=0
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=1
+[OK] T02 - carro sai vazio e retira vagas residuais
+
+[CASO] T03 - zero vagas com tres passageiros; proximo carro atende | passageiros=3
+  estado: aguardando=3 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=0, embarques esperados=0
+  estado: aguardando=3 vagas=0 embarcando=0 carro_retornou=1
+  carro 2: capacidade=3, embarques esperados=3
+  estado: aguardando=0 vagas=0 embarcando=3 carro_retornou=0
+  3 reserva(s) concluidas antes de qualquer confirmacao deste carro
+  estado: aguardando=0 vagas=0 embarcando=1 carro_retornou=0
+  ultima confirmacao retida: carro continua esperando
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=1
+[OK] T03 - zero vagas com tres passageiros; proximo carro atende
+
+[CASO] T04 - dois passageiros e cinco vagas | passageiros=2
+  estado: aguardando=2 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=5, embarques esperados=2
+  estado: aguardando=0 vagas=3 embarcando=2 carro_retornou=0
+  2 reserva(s) concluidas antes de qualquer confirmacao deste carro
+  estado: aguardando=0 vagas=3 embarcando=1 carro_retornou=0
+  ultima confirmacao retida: carro continua esperando
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=1
+[OK] T04 - dois passageiros e cinco vagas
+
+[CASO] T05 - quatro passageiros e quatro vagas | passageiros=4
+  estado: aguardando=4 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=4, embarques esperados=4
+  estado: aguardando=0 vagas=0 embarcando=4 carro_retornou=0
+  4 reserva(s) concluidas antes de qualquer confirmacao deste carro
+  estado: aguardando=0 vagas=0 embarcando=1 carro_retornou=0
+  ultima confirmacao retida: carro continua esperando
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=1
+[OK] T05 - quatro passageiros e quatro vagas
+
+[CASO] T06 - cinco passageiros em carros de duas e tres vagas | passageiros=5
+  estado: aguardando=5 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=2, embarques esperados=2
+  estado: aguardando=3 vagas=0 embarcando=2 carro_retornou=0
+  2 reserva(s) concluidas antes de qualquer confirmacao deste carro
+  estado: aguardando=3 vagas=0 embarcando=1 carro_retornou=0
+  ultima confirmacao retida: carro continua esperando
+  estado: aguardando=3 vagas=0 embarcando=0 carro_retornou=1
+  carro 2: capacidade=3, embarques esperados=3
+  estado: aguardando=0 vagas=0 embarcando=3 carro_retornou=0
+  3 reserva(s) concluidas antes de qualquer confirmacao deste carro
+  estado: aguardando=0 vagas=0 embarcando=1 carro_retornou=0
+  ultima confirmacao retida: carro continua esperando
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=1
+[OK] T06 - cinco passageiros em carros de duas e tres vagas
+
+[CASO] T07 - tres reservas simultaneas e ultima confirmacao retida | passageiros=3
+  estado: aguardando=3 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=3, embarques esperados=3
+  estado: aguardando=0 vagas=0 embarcando=3 carro_retornou=0
+  3 reserva(s) concluidas antes de qualquer confirmacao deste carro
+  estado: aguardando=0 vagas=0 embarcando=1 carro_retornou=0
+  ultima confirmacao retida: carro continua esperando
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=1
+[OK] T07 - tres reservas simultaneas e ultima confirmacao retida
+
+[OK] 7 cenarios controlados aprovados.
+[ENTRADA INVALIDA] ./sync_car-tests --cenario -1 2
+Entrada invalida: use --cenario PASSAGEIROS VAGAS [VAGAS...]
+[OK] entrada rejeitada com retorno 2 antes de criar threads
+[ENTRADA INVALIDA] ./sync_car-tests --cenario 2 -1
+Entrada invalida: vagas devem ser inteiras entre 0 e 1000000
+[OK] entrada rejeitada com retorno 2 antes de criar threads
+[ENTRADA INVALIDA] ./sync_car-tests --cenario abc 2
+Entrada invalida: use --cenario PASSAGEIROS VAGAS [VAGAS...]
+[OK] entrada rejeitada com retorno 2 antes de criar threads
+[ENTRADA INVALIDA] ./sync_car-tests --cenario 2 1
+Entrada invalida: o cenario precisa de carros suficientes para concluir
+[OK] entrada rejeitada com retorno 2 antes de criar threads
+[OK FINAL] runner original + 7 cenarios controlados + 4 entradas invalidas
+
+Script done on 2026-11-04 19:27:33-03:00 [COMMAND_EXIT_CODE="0"]

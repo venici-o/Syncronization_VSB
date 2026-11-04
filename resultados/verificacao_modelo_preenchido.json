@@ -1,0 +1,27 @@
+{
+  "modelo": "/home/vinicio/Downloads/Guia_de_Relatorios.docx",
+  "sha256_modelo": "ef59f6a7219b8ae6997001ad8d3c8b8607b762802bce874112ca0575de2bcd39",
+  "saida": "/home/vinicio/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB/vsb.docx",
+  "paragrafos_originais_preservados_inteiros": 60,
+  "campos_de_exemplo_preenchidos": [
+    18,
+    22,
+    23,
+    25,
+    26,
+    27
+  ],
+  "tabelas_originais_mantidas": 4,
+  "cabecalhos_larguras_bordas_das_tabelas_preservados": true,
+  "margens_e_configuracao_de_pagina_preservadas": true,
+  "partes_originais_do_docx_preservadas_byte_a_byte": [
+    "word/numbering.xml",
+    "word/settings.xml",
+    "word/fontTable.xml",
+    "word/styles.xml",
+    "_rels/.rels",
+    "word/theme/theme1.xml",
+    "word/media/image1.png"
+  ],
+  "observacao": "O PDF anterior não foi reexportado; corresponde ao layout reconstruído anterior."
+}

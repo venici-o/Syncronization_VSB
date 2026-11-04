@@ -1,0 +1,400 @@
+0001: Script started on 2026-11-04 14:07:27-03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="151" LINES="18"]
+0002: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0003: ❯ 
+0004: t
+0005: t
+0006: ouch Corrente.java
+0007: ouch Corrente.java
+0008: uch Corrente.java
+0009: ch Corrente.java
+0010: h Corrente.java
+0011: touch Corrente.java
+0012:  Corrente.java
+0013:  Corrente.java
+0014: s
+0015: s
+0016: y
+0017: n
+0018: c
+0019: .
+0020: c
+0021: _.c
+0022: v.c
+0023: s.c
+0024: b.c
+0025: ⏎                                                                                                                                                      
+0026: ⏎ 
+0027: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0028: ❯ 
+0029: t
+0030: ouch sync_vsb.c
+0031: touch sync_vsb.c
+0032: ouch sync_vsb.c
+0033: uch sync_vsb.c
+0034: ch sync_vsb.c
+0035: h sync_vsb.c
+0036: touch sync_vsb.c
+0037:  sync_vsb.c
+0038:  sync_vsb.c
+0039: M
+0040: M
+0041: a
+0042: k
+0043: e
+0044: f
+0045: i
+0046: l
+0047: e
+0048: ⏎                                                                                                                                                      
+0049: ⏎ 
+0050: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0051: ❯ 
+0052: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0053: ❯ 
+0054: d
+0055: ir
+0056: dir
+0057: a
+0058: te…
+0059: w
+0060: w
+0061: hoami…
+0062: hoami…
+0063: whoami…
+0064: oami…
+0065: whoami…
+0066: ami…
+0067: whoami…
+0068: mi…
+0069: i
+0070: whoami
+0071: vinicio
+0072: ⏎                                                                                                                                            
+0073: ⏎ 
+0074: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0075: ❯ 
+0076: d
+0077: ir
+0078: dir
+0079: a
+0080: te…
+0081: te…
+0082: e
+0083: date
+0084: qua 04 nov 2026 14:53:48 -03
+0085: ⏎                                                                                                                                            
+0086: ⏎ 
+0087: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0088: ❯ 
+0089: p
+0090: ython -m app.main
+0091: python -m app.main
+0092: w
+0093: d
+0094: d
+0095: pwd
+0096: /home/vinicio/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB
+0097: ⏎                                                                                                                                            
+0098: ⏎ 
+0099: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0100: ❯ 
+0101: gcc -std=c11 -Wall -Wextra -Wpedantic -pthread -fsyntax-only sync_car.c
+0102: gcc -std=c11 -Wall -Wextra -Wpedantic -pthread -fsyntax-only sync_car.c
+0103: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0104: ❯ 
+0105: ~/D/w/2/I/Syncronization_VSB main*
+0106: ❯ 
+0107: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0108: ❯ 
+0109: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0110: ❯ 
+0111: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0112: ❯ 
+0113: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0114: ❯ 
+0115: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0116: ❯ 
+0117: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0118: ❯ 
+0119: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0120: ❯ 
+0121: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0122: ❯ 
+0123: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0124: ❯ 
+0125: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0126: ❯ 
+0127: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0128: ❯ 
+0129: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0130: ❯ 
+0131: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0132: ❯ 
+0133: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0134: ❯ 
+0135: m
+0136: kdir six
+0137: mkdir six
+0138: a
+0139: ke
+0140: ke
+0141: e
+0142: make
+0143: clean
+0144:  clean
+0145: clean
+0146: clean
+0147: h
+0148: e
+0149: c
+0150: k
+0151: gcc -Wall -Wextra -std=c11 -Wpedantic -pthread -fsyntax-only sync_car.c sync_car.h
+0152: ⏎                                                                                                          
+0153: ⏎ 
+0154: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0155: ❯ 
+0156: make check
+0157: make check
+0158: gcc -Wall -Wextra -std=c11 -Wpedantic -pthread -fsyntax-only sync_car.c sync_car.h
+0159: sync_car.c: In function ‘station_init’:
+0160: sync_car.c:9:28: error: expected ‘;’ before ‘pthread_mutex_init’
+0161:     9 |     station->p_embarcando=0
+0162:       |                            ^
+0163:       |                            ;
+0164:    10 |     pthread_mutex_init(&station->mutex, NULL);
+0165:       |     ~~~~~~~~~~~~~~~~~~      
+0166: make: *** [Makefile:12: check] Error 1
+0167: ⏎                                                                                                          
+0168: ⏎ 
+0169: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0170: ❯ 
+0171: m
+0172: ake check
+0173: make check
+0174: ake check
+0175: ke check
+0176: e check
+0177: make check
+0178:  check
+0179:  check
+0180: check
+0181: check
+0182: heck
+0183: eck
+0184: ck
+0185: k
+0186: gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread -fsyntax-only sync_car.c sync_car.h
+0187: ⏎                                                                                                          
+0188: ⏎ 
+0189: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0190: ❯ 
+0191: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0192: ❯ 
+0193: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0194: ❯ 
+0195: m
+0196: ake check
+0197: make check
+0198: ake check
+0199: ke check
+0200: e check
+0201: make check
+0202:  check
+0203:  check
+0204: check
+0205: check
+0206: heck
+0207: eck
+0208: ck
+0209: k
+0210: gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread -fsyntax-only sync_car.c sync_car.h
+0211: ⏎                                                                                                          
+0212: ⏎ 
+0213: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0214: ❯ 
+0215: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0216: ❯ 
+0217: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0218: ❯ 
+0219: m
+0220: ake check
+0221: make check
+0222: ake check
+0223: ke check
+0224: e check
+0225: make check
+0226:  check
+0227:  check
+0228: check
+0229: check
+0230: heck
+0231: eck
+0232: ck
+0233: k
+0234: make check[]
+0235: make check[]
+0236: 
+0237: gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread -fsyntax-only sync_car.c sync_car.h
+0238: sync_car.c: In function ‘station_load_car’:
+0239: sync_car.c:21:27: warning: ordered comparison of pointer with integer zero [-Wpedantic]
+0240:    21 |     while((&station->vagas>0 && &station->p_aguardando>0)){
+0241:       |                           ^
+0242: sync_car.c:21:55: warning: ordered comparison of pointer with integer zero [-Wpedantic]
+0243:    21 |     while((&station->vagas>0 && &station->p_aguardando>0)){
+0244:       |                                                       ^
+0245: ⏎                                                                                                          
+0246: ⏎ 
+0247: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0248: ❯ 
+0249: t
+0250: ouch Makefile
+0251: touch Makefile
+0252: 
+0253: make check
+0254: make check
+0255: gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread -fsyntax-only sync_car.c sync_car.h
+0256: ⏎                                                                                                          
+0257: ⏎ 
+0258: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0259: ❯ 
+0260: m
+0261: ake check
+0262: make check
+0263: ake check
+0264: ke check
+0265: e check
+0266: make check
+0267:  check
+0268:  check
+0269: r
+0270: un 10 10 10
+0271: run 10 10 10
+0272: un 10 10 10
+0273: n 10 10 10
+0274: a
+0275: a
+0276: l
+0277: l
+0278: gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread sync_car.c sync_car-runner.c -o sync_car
+0279: sync_car-runner.c: In function ‘alarm_handler’:
+0280: sync_car-runner.c:54:24: warning: unused parameter ‘foo’ [-Wunused-parameter]
+0281:    54 | void alarm_handler(int foo)
+0282:       |                    ~~~~^~~
+0283: ⏎                                                                                                          
+0284: ⏎ 
+0285: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0286: ❯ 
+0287: m
+0288: ake all
+0289: make all
+0290: ake all
+0291: ke all
+0292: e all
+0293: make all
+0294:  all
+0295:  all
+0296: r
+0297: r
+0298: un 10 10 10
+0299: un 10 10 10
+0300: n 10 10 10
+0301: make: *** No rule to make target 'run'.  Stop.
+0302: ⏎                                                                                                          
+0303: ⏎ 
+0304: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0305: ❯ 
+0306: m
+0307: ake run
+0308: make run
+0309: ake run
+0310: ke run
+0311: e run
+0312: make run
+0313:  run
+0314:  run
+0315: s
+0316: s
+0317: ync_car 
+0318: ync_car 
+0319: nc_car 
+0320: make sync_car 
+0321: make sync_car 
+0322: make: 'sync_car' is up to date.
+0323: ⏎                                                                                                          
+0324: ⏎ 
+0325: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0326: ❯ 
+0327: .
+0328: .
+0329: /
+0330: ./
+0331: sync_car 
+0332: sync_car 
+0333: ./sync_car 
+0334: ./sync_car 
+0335: ./sync_car 
+0336: Error: Failed to complete after 2 seconds. Something's wrong, or your system is terribly slow. Possible error hint: [station_load_car didn't return immediately when no free seats]
+0337: ⏎                                                                                                          
+0338: ⏎ 
+0339: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0340: ❯ 
+0341: ./sync_car
+0342: ./sync_car
+0343: make sync_car
+0344: make sync_car
+0345: gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread sync_car.c sync_car-runner.c -o sync_car
+0346: sync_car-runner.c: In function ‘alarm_handler’:
+0347: sync_car-runner.c:54:24: warning: unused parameter ‘foo’ [-Wunused-parameter]
+0348:    54 | void alarm_handler(int foo)
+0349:       |                    ~~~~^~~
+0350: ⏎                                                                                                          
+0351: ⏎ 
+0352: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0353: ❯ 
+0354: make sync_car
+0355: make sync_car
+0356: ./sync_car
+0357: ./sync_car
+0358: Error: Failed to complete after 2 seconds. Something's wrong, or your system is terribly slow. Possible error hint: [station_load_car didn't return immediately when no free seats]
+0359: ⏎                                                                                                          
+0360: ⏎ 
+0361: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0362: ❯ 
+0363: ./sync_car
+0364: ./sync_car
+0365: make sync_car
+0366: make sync_car
+0367: gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread sync_car.c sync_car-runner.c -o sync_car
+0368: sync_car-runner.c: In function ‘alarm_handler’:
+0369: sync_car-runner.c:54:24: warning: unused parameter ‘foo’ [-Wunused-parameter]
+0370:    54 | void alarm_handler(int foo)
+0371:       |                    ~~~~^~~
+0372: ⏎                                                                                                          
+0373: ⏎ 
+0374: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0375: ❯ 
+0376: make sync_car
+0377: make sync_car
+0378: ./sync_car
+0379: ./sync_car
+0380: car entering station with 17 free seats
+0381: car departed station with 17 new passenger(s) (expected 17)
+0382: car entering station with 35 free seats
+0383: car departed station with 35 new passenger(s) (expected 35)
+0384: car entering station with 30 free seats
+0385: car departed station with 30 new passenger(s) (expected 30)
+0386: car entering station with 30 free seats
+0387: car departed station with 18 new passenger(s) (expected 18)
+0388: Looks good!
+0389: ⏎                                                                                                          
+0390: ⏎ 
+0391: ~/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB main*
+0392: ❯ 
+0393: e
+0394: xit
+0395: exit
+0396: xit
+0397: it
+0398: t
+0399: exit
+0400: Script done on 2026-11-04 19:28:17-03:00 [COMMAND_EXIT_CODE="0"]

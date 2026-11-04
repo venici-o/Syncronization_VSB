@@ -1,0 +1,8 @@
+ec9cbd0 2026-11-04T19:12:39-03:00 fix: station_load_car não zerava vagas ao atingir as condições
+e3fe031 2026-11-04T19:01:31-03:00 feat: station_load_car
+03ad375 2026-11-04T18:59:09-03:00 feat: station_on_board
+9feda9a 2026-11-04T16:47:59-03:00 feat: station_wait_for_car
+36a682a 2026-11-04T16:46:25-03:00 add: sync_car.c && feat: station_init
+fa6fdf7 2026-11-04T16:32:35-03:00 add: header
+9a43bef 2026-11-04T16:31:42-03:00 add: Makefile & car-runner.c
+dcd4021 2026-11-04T13:57:00-03:00 Initial commit

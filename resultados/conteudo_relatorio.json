@@ -1,0 +1,570 @@
+[
+  [
+    [
+      "title",
+      "Sincronização do metrô"
+    ],
+    [
+      "p",
+      "Infraestrutura de Software • Implementação 4\nAluno: Vinicius de Souza Barbosa • 04/11/2026 • Login de entrega: vsb"
+    ],
+    [
+      "small",
+      "Modelo: Guia_de_Relatorios.docx. Validação automatizada em 04/11/2026, às 19:29 (America/Recife). Repositório: https://github.com/venici-o/Syncronization_VSB"
+    ],
+    [
+      "h",
+      "1. Objetivo"
+    ],
+    [
+      "p",
+      "Implementar em C a sincronização entre passageiros e carros de metrô, representados por threads. Garantir reservas dentro da capacidade, permitir embarques simultâneos e impedir a partida antes das confirmações. Entregar a implementação, Makefile, README, testes reproduzíveis, evidências e relatório."
+    ],
+    [
+      "h",
+      "2. Checklist de Requisitos"
+    ],
+    [
+      "table",
+      [
+        "Requisito do enunciado",
+        "Status",
+        "Como testar / evidência"
+      ],
+      [
+        [
+          "Implementação em C executável em Linux",
+          "OK",
+          "make; resultados/validacao.log"
+        ],
+        [
+          "station e quatro funções exigidas",
+          "OK",
+          "sync_car.h e sync_car.c; make check"
+        ],
+        [
+          "Mutex e condições pthread exigidos",
+          "OK",
+          "Inicialização, lock/unlock, wait, signal e broadcast no código"
+        ],
+        [
+          "Um mutex por station; sem semáforos",
+          "OK",
+          "Inspeção de sync_car.h e sync_car.c"
+        ],
+        [
+          "Esperar vaga sem exceder a capacidade",
+          "OK",
+          "T03, T05 e T06"
+        ],
+        [
+          "Embarque simultâneo",
+          "OK",
+          "T07: três reservas antes de qualquer confirmação"
+        ],
+        [
+          "Esperar todos os embarques antes de partir",
+          "OK",
+          "T04–T07: última confirmação retida"
+        ],
+        [
+          "Partir cheio ou sem mais passageiros aguardando",
+          "OK",
+          "T01–T06; retirada das vagas na saída"
+        ],
+        [
+          "Sem busy-wait na implementação da estação",
+          "OK",
+          "Laços usam pthread_cond_wait em sync_car.c"
+        ],
+        [
+          "Makefile gera sync_car e permite limpeza",
+          "OK",
+          "make clean; make; executável validado"
+        ],
+        [
+          "README, relatório e evidências",
+          "OK",
+          "README.md, vsb.docx, vsb.pdf e resultados/"
+        ],
+        [
+          "Publicação dos novos arquivos e envio ao Classroom",
+          "Pendente",
+          "Atualizar GitHub e montar/enviar vsb.tar e vsb.pdf"
+        ]
+      ],
+      [
+        0.4,
+        0.12,
+        0.48
+      ]
+    ],
+    [
+      "small",
+      "Escopo: um carro por estação por vez; todos seguem ao mesmo destino. As entradas da API pressupõem capacidade não negativa e uma confirmação por reserva. Outras plataformas não foram testadas."
+    ]
+  ],
+  [
+    [
+      "h",
+      "3. Como Reproduzir"
+    ],
+    [
+      "p",
+      "Ambiente validado: CachyOS Linux x86_64, kernel 7.2.6-1-cachyos, GCC 16.2.1 e GNU Make 4.4.1. Execute os comandos na pasta que contém o Makefile:"
+    ],
+    [
+      "code",
+      "make clean\nmake\n./sync_car\nmake check\nmake test"
+    ],
+    [
+      "p",
+      "O runner original deve terminar com “Looks good!”. A suíte adicional deve terminar com “[OK FINAL] runner original + 7 cenarios controlados + 4 entradas invalidas”. Um erro em qualquer verificação faz make test falhar."
+    ],
+    [
+      "p",
+      "Para um cenário específico e para gravar a validação completa:"
+    ],
+    [
+      "code",
+      "./sync_car-tests --cenario 5 2 3\nmkdir -p resultados\nscript -q -e -c 'sh testes/validar.sh' resultados/nova_validacao.log"
+    ],
+    [
+      "small",
+      "A interface acima significa cinco passageiros e carros sucessivos de duas e três vagas. O script recompila do zero e registra data, usuário, diretório, ambiente, testes e hashes. Os testes controlados dependem de GNU ld/--wrap. O runner original mantém um aviso preexistente de parâmetro foo não utilizado."
+    ],
+    [
+      "h",
+      "4. Arquitetura (resumida)"
+    ],
+    [
+      "table",
+      [
+        "Arquivo",
+        "Responsabilidade"
+      ],
+      [
+        [
+          "sync_car.c",
+          "Inicializa a estação, reserva vagas, confirma embarques e controla a partida."
+        ],
+        [
+          "sync_car.h",
+          "Define struct station e declara as quatro funções."
+        ],
+        [
+          "sync_car-runner.c",
+          "Runner original com 100 passageiros e capacidades aleatórias."
+        ],
+        [
+          "testes/sync_car-tests.c",
+          "Cenários controlados, observação das esperas e validação da entrada de testes."
+        ],
+        [
+          "testes/executar.sh",
+          "Integra runner, sete cenários e quatro entradas inválidas."
+        ],
+        [
+          "testes/validar.sh",
+          "Compilação limpa e coleta reproduzível das evidências."
+        ],
+        [
+          "Makefile / README.md",
+          "Compilação, limpeza, testes e instruções de uso."
+        ]
+      ],
+      [
+        0.33,
+        0.67
+      ]
+    ],
+    [
+      "p",
+      "Decisões: um mutex protege os três contadores; duas condições separam a espera por vagas da espera por confirmações. A reserva diminui vagas e aguardando e aumenta embarcando antes de liberar o mutex. Assim, o embarque pode continuar fora da região crítica."
+    ],
+    [
+      "p",
+      "O carro espera enquanto há passageiros embarcando OU enquanto existem vagas E passageiros aguardando. Antes de sair, zera as vagas. As esperas usam while para reavaliar o estado depois de cada despertar."
+    ]
+  ],
+  [
+    [
+      "h",
+      "5. Estratégias e Diário de Desenvolvimento"
+    ],
+    [
+      "h",
+      "5.1 Estratégias da semana"
+    ],
+    [
+      "table",
+      [
+        "ID",
+        "Nome curto",
+        "Contexto",
+        "Motivo da troca"
+      ],
+      [
+        [
+          "S1",
+          "Contadores + mutex + condições",
+          "Implementação incremental: inicialização, reserva, confirmação e carregamento.",
+          "Não houve troca de abordagem. Foram corrigidas a condição de saída e a retirada das vagas."
+        ]
+      ],
+      [
+        0.1,
+        0.23,
+        0.35,
+        0.32
+      ]
+    ],
+    [
+      "h",
+      "5.2 Diário de Tentativas"
+    ],
+    [
+      "small",
+      "Eventos antigos seguem a ordem do log do aluno. Não foram inventados horários para comandos que não possuem timestamp individual. As referências H correspondem às linhas numeradas de resultados/historico_legivel.txt, derivadas da cópia bruta preservada."
+    ],
+    [
+      "table",
+      [
+        "#",
+        "Estrat.",
+        "O que tentei",
+        "Resultado",
+        "Hipótese / causa",
+        "Quando",
+        "Evidência"
+      ],
+      [
+        [
+          "1",
+          "S1",
+          "Compilar a inicialização",
+          "Falha",
+          "Faltava ponto e vírgula antes de pthread_mutex_init.",
+          "04/11; ordem 1",
+          "H160"
+        ],
+        [
+          "2",
+          "S1",
+          "Verificar a espera do carro",
+          "Parcial: avisos",
+          "O & fazia comparar endereços com zero.",
+          "04/11; ordem 2",
+          "H239 e H242"
+        ],
+        [
+          "3",
+          "S1",
+          "Executar make run",
+          "Falha",
+          "Alvo não existia; foi adotada execução direta.",
+          "04/11; ordem 3",
+          "H301"
+        ],
+        [
+          "4",
+          "S1",
+          "Executar o runner após compilar",
+          "Falha: timeout",
+          "Revisar condição de partida e vagas residuais; o log não identifica o hash do binário daquela tentativa.",
+          "04/11; ordem 4",
+          "H336 e H358"
+        ],
+        [
+          "5",
+          "S1",
+          "Recompilar e testar a versão final",
+          "OK",
+          "—",
+          "04/11 19:29:17–18",
+          "validacao.log"
+        ],
+        [
+          "6",
+          "S1",
+          "Verificar detecção dos defeitos anteriores",
+          "OK: defeitos detectados",
+          "—",
+          "04/11 19:29:48",
+          "regressoes.log"
+        ]
+      ],
+      [
+        0.04,
+        0.07,
+        0.19,
+        0.14,
+        0.25,
+        0.14,
+        0.17
+      ]
+    ],
+    [
+      "p",
+      "O histórico Git complementa o diário: a implementação de station_load_car foi registrada em e3fe031, às 19:01:31; a correção das vagas foi registrada em ec9cbd0, às 19:12:39. A exportação está em resultados/historico_git.txt. Esses são horários de commits, não horários atribuídos retroativamente aos comandos do terminal."
+    ],
+    [
+      "p",
+      "Na validação adicional, uma cópia temporária da versão e3fe031 foi compilada com a suíte nova: T02 detectou dez vagas residuais depois da saída. Uma segunda cópia temporária retirou deliberadamente o teste de p_embarcando da versão atual: a suíte detectou partida com confirmação pendente. As cópias temporárias foram descartadas; o código atual do aluno foi preservado."
+    ],
+    [
+      "p",
+      "As dificuldades centrais foram distinguir valor de endereço, reservar sem confundir com confirmação e separar condição de espera de condição de partida. A correção de sintaxe não bastava: o programa chegou a compilar e ainda apresentar falhas no runner."
+    ]
+  ],
+  [
+    [
+      "h",
+      "6. Evidências"
+    ],
+    [
+      "h",
+      "6.1 Log automático e resultados"
+    ],
+    [
+      "p",
+      "A sessão final foi gravada com script e recompilou tudo do zero. O histórico foi preservado em resultados/evidencias_usuario_original.log. O arquivo resultados/evidencias_completas.log reúne essa cópia e os registros novos, identificando a execução pela IA. O evidencias.log ativo do aluno fica separado. Na entrega, usar a cópia consolidada com o nome evidencias.log. As saídas individuais estão em resultados/validacao.log e resultados/regressoes.log."
+    ],
+    [
+      "table",
+      [
+        "Caso",
+        "Entrada / situação",
+        "Resultado observado"
+      ],
+      [
+        [
+          "T01",
+          "0 passageiros; 0 vagas",
+          "Retornou com os três contadores zerados."
+        ],
+        [
+          "T02",
+          "0 passageiros; 10 vagas",
+          "Saiu vazio e deixou vagas=0."
+        ],
+        [
+          "T03",
+          "3 passageiros; carros de 0 e 3 vagas",
+          "Primeiro carro deixou os três esperando; o seguinte embarcou todos."
+        ],
+        [
+          "T04",
+          "2 passageiros; 5 vagas",
+          "Duas reservas; esperou ambas as confirmações e retirou as vagas restantes."
+        ],
+        [
+          "T05",
+          "4 passageiros; 4 vagas",
+          "Quatro reservas antes das confirmações; nenhum excesso de capacidade."
+        ],
+        [
+          "T06",
+          "5 passageiros; carros de 2 e 3 vagas",
+          "Primeiro embarcou dois e deixou três; segundo completou o atendimento."
+        ],
+        [
+          "T07",
+          "3 passageiros; última confirmação retida",
+          "Três reservas antes de qualquer confirmação. Com embarcando=1, carro_retornou=0; após a última, carro_retornou=1."
+        ]
+      ],
+      [
+        0.09,
+        0.35,
+        0.56
+      ]
+    ],
+    [
+      "table",
+      [
+        "Entrada inválida na interface de testes",
+        "Resultado observado"
+      ],
+      [
+        [
+          "--cenario -1 2",
+          "Retorno 2: passageiros inválidos."
+        ],
+        [
+          "--cenario 2 -1",
+          "Retorno 2: capacidade negativa."
+        ],
+        [
+          "--cenario abc 2",
+          "Retorno 2: quantidade não numérica."
+        ],
+        [
+          "--cenario 2 1",
+          "Retorno 2: carros insuficientes para concluir o cenário."
+        ]
+      ],
+      [
+        0.48,
+        0.52
+      ]
+    ],
+    [
+      "p",
+      "As entradas inválidas são rejeitadas pelo executável adicional antes de criar threads. Não foi acrescentada validação de parâmetros à API original, cujo contrato não especifica capacidades negativas. O caso com capacidade total insuficiente é rejeitado para evitar que o teste termine com threads ainda aguardando um carro futuro."
+    ],
+    [
+      "p",
+      "Método: o linker observa pthread_cond_wait para saber quando passageiros chegaram e quando o carro voltou a esperar. Um controlador segura as confirmações até todas as reservas esperadas terminarem, depois libera uma por vez. Os estados são lidos sob mutex. O alarme de dez segundos é apenas um limite de falha; nenhum sleep ou polling determina a ordem do teste."
+    ],
+    [
+      "small",
+      "Resultado: runner original aprovado, sete cenários controlados aprovados, quatro entradas inválidas rejeitadas e dois defeitos intencionalmente presentes em cópias de verificação detectados. Isso não é prova de todos os escalonamentos possíveis."
+    ]
+  ],
+  [
+    [
+      "h",
+      "6.2 Capturas das evidências"
+    ],
+    [
+      "small",
+      "As figuras são capturas atuais de um visualizador local dos logs reais. A primeira mostra uma reexecução identificada da versão histórica; não se apresenta como print original do momento em que o aluno encontrou o erro."
+    ],
+    [
+      "image",
+      "erro_reproduzido.png",
+      "Figura 1 — Reexecução de e3fe031: o carro retornou mantendo dez vagas. Fonte: resultados/regressoes.log, R01. A falha esperada foi detectada pela suíte adicional."
+    ],
+    [
+      "image",
+      "validacao_final.png",
+      "Figura 2 — T07 na implementação atual: três reservas antes de qualquer confirmação; carro permanece enquanto há uma confirmação pendente e retorna somente depois dela. Fonte: resultados/validacao.log."
+    ]
+  ],
+  [
+    [
+      "h",
+      "7. Uso de IA"
+    ],
+    [
+      "p",
+      "Usei IA inicialmente para entender threads, mutex, variáveis de condição e as responsabilidades de cada função. Escrevi o código da estação e pedi revisões incrementais, solicitando explicações em vez da solução pronta. Depois pedi explicitamente que a IA implementasse os casos de teste e preenchesse este relatório."
+    ],
+    [
+      "p",
+      "A IA produziu a suíte adicional, os scripts de teste, as alterações do Makefile relacionadas aos testes, o README e os arquivos DOCX/PDF. Também executou a validação final, a reprodução do defeito histórico e a verificação com uma mutação controlada. Essa execução automatizada não é apresentada como validação manual do aluno."
+    ],
+    [
+      "p",
+      "Prompts principais registrados na conversa:"
+    ],
+    [
+      "p",
+      "• “quero que você me explique o que precisa ser feito e me guie [...] para que EU faça [...] a implementação”"
+    ],
+    [
+      "p",
+      "• “me explica mais tecnicamente como usar o mutex na struct”"
+    ],
+    [
+      "p",
+      "• “tenta evitar me falar o codigo direto [...] me explica como funciona”"
+    ],
+    [
+      "p",
+      "• “como registro os casos limite?”"
+    ],
+    [
+      "p",
+      "• “tu consegue fazer esses casos e preencher o docx pra mim man??”"
+    ],
+    [
+      "p",
+      "Validação manual: executei make check, compilei e executei o runner durante o desenvolvimento; o log do aluno registra tentativas, avisos e falhas. Também informei na conversa que obtive “Looks good!”. A aprovação reproduzível apresentada na seção 6 vem da nova execução automatizada, gravada em resultados/validacao.log. A revisão final deste texto e a publicação dos arquivos ainda dependem de mim."
+    ],
+    [
+      "h",
+      "8. Reflexão Final"
+    ],
+    [
+      "p",
+      "Comecei com mais familiaridade com a teoria do que com o código de threads.\nA principal mudança de entendimento foi separar reserva de vaga e confirmação de embarque.\nO mutex precisa proteger a consulta e a atualização dos contadores como uma única operação.\nAs condições permitem esperar liberando o mutex para que outras threads avancem.\nAprendi que compilar sem erros não garante que o carro esteja esperando corretamente.\nOs casos controlados tornaram visíveis os estados intermediários que a saída final sozinha não mostrava.\nEm uma próxima implementação, definiria esses estados e casos de teste antes de escrever a condição de partida."
+    ]
+  ],
+  [
+    [
+      "h",
+      "9. Checklist Final de Entrega"
+    ],
+    [
+      "table",
+      [
+        "Item",
+        "Confirmado?"
+      ],
+      [
+        [
+          "Compilei do zero seguindo os comandos do relatório",
+          "Sim, na validação automatizada gravada em validacao.log."
+        ],
+        [
+          "Rodei os testes e evidencias.log foi gerado",
+          "Sim; histórico e sessão nova em resultados/evidencias_completas.log. Usar esse arquivo como evidencias.log na entrega."
+        ],
+        [
+          "Tenho prints obrigatórios",
+          "Capturas do erro reproduzido e da validação final incluídas. Não há print antigo original do erro."
+        ],
+        [
+          "Testei pelo menos um caso limite e um caso inválido",
+          "Sim: T01–T07 e quatro entradas inválidas da interface de teste."
+        ],
+        [
+          "Preenchi a seção de uso de IA",
+          "Sim, com distinção entre código do aluno e trabalho automatizado."
+        ],
+        [
+          "Revisei o relatório e removi frases genéricas / vazias",
+          "Revisão técnica automatizada concluída; leitura final pelo aluno pendente."
+        ],
+        [
+          "README e PDF dentro do repositório local",
+          "Sim. Publicação desses novos arquivos no GitHub pendente."
+        ],
+        [
+          "Diretório e arquivo de entrega com nome do login",
+          "Pendente: organizar a pasta vsb, gerar vsb.tar e conferir o nome institucional."
+        ],
+        [
+          "Envio de vsb.pdf, vsb.tar e link no Classroom",
+          "Pendente; nenhum envio externo foi realizado."
+        ]
+      ],
+      [
+        0.46,
+        0.54
+      ]
+    ],
+    [
+      "h",
+      "10. Se eu tivesse mais 2 horas"
+    ],
+    [
+      "p",
+      "Acrescentaria testes em que passageiros chegam durante o embarque, com a ordem controlada.\nExecutaria cenários com duas estações independentes para verificar o isolamento do estado.\nTrataria explicitamente os retornos de erro das funções pthread na implementação.\nDefiniria um contrato para parâmetros inválidos da API, além da interface de testes.\nRevisaria o runner original para substituir seu polling e seu controle com volatile.\nMediria a cobertura dos testes e avaliaria ferramentas de detecção de corridas.\nValidaria a compilação em outra plataforma e documentaria a alternativa ao --wrap do GNU ld."
+    ],
+    [
+      "h",
+      "Limitações registradas"
+    ],
+    [
+      "p",
+      "Não foram testadas múltiplas estações, chegadas durante o embarque nem outras plataformas. A estação não garante ordem FIFO e pressupõe capacidade não negativa, um carro por vez e confirmações correspondentes a reservas. Os retornos de inicialização pthread não são tratados no código do aluno. O runner original possui polling e controles com volatile; por isso a verificação de simultaneidade também usa o controlador adicional com mutex e condições."
+    ],
+    [
+      "small",
+      "O núcleo sync_car.c, seu cabeçalho e o runner original permaneceram inalterados durante a inclusão dos testes e a redação do relatório. Hashes da versão validada constam no fim de resultados/validacao.log. Modelo e enunciado usados: Guia_de_Relatorios.docx e 5_Syncronization.docx."
+    ]
+  ]
+]

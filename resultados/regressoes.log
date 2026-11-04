@@ -1,0 +1,37 @@
+VERIFICACAO DE REGRESSOES - execucao atual, nao registro historico de terminal
+2026-11-04T19:29:48.003747-03:00
+
+R01 - versao historica e3fe031; sem retirada de vagas
+$ gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread -I /home/vinicio/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB /tmp/sync-regressoes-ojpjfjts/sync_car.c /home/vinicio/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB/testes/sync_car-tests.c -Wl,--wrap=pthread_cond_wait -o /tmp/sync-regressoes-ojpjfjts/teste
+
+$ /tmp/sync-regressoes-ojpjfjts/teste 
+
+[CASO] T01 - estacao vazia e zero vagas | passageiros=0
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=0, embarques esperados=0
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=1
+[OK] T01 - estacao vazia e zero vagas
+
+[CASO] T02 - carro sai vazio e retira vagas residuais | passageiros=0
+  estado: aguardando=0 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=10, embarques esperados=0
+  estado: aguardando=0 vagas=10 embarcando=0 carro_retornou=1
+[FALHA] vagas incorretas (reserva indevida ou vaga residual)
+RETORNO=1
+[OK] teste identificou o defeito deliberadamente presente nesta versao
+
+R02 - mutacao de teste: ignorar passageiros embarcando
+$ gcc -Wall -Wextra -std=gnu11 -Wpedantic -pthread -I /home/vinicio/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB /tmp/sync-regressoes-ojpjfjts/sync_car.c /home/vinicio/Desktop/workspace/2026.2_CC/INFRASF_VSB/Syncronization_VSB/testes/sync_car-tests.c -Wl,--wrap=pthread_cond_wait -o /tmp/sync-regressoes-ojpjfjts/teste
+
+$ /tmp/sync-regressoes-ojpjfjts/teste --cenario 3 3
+
+[CASO] personalizado | passageiros=3
+  estado: aguardando=3 vagas=0 embarcando=0 carro_retornou=0
+  carro 1: capacidade=3, embarques esperados=3
+  estado: aguardando=0 vagas=0 embarcando=3 carro_retornou=0
+  3 reserva(s) concluidas antes de qualquer confirmacao deste carro
+[FALHA] carro partiu com confirmacao pendente
+RETORNO=1
+[OK] teste identificou o defeito deliberadamente presente nesta versao
+
+Implementacao atual preservada; arquivos temporarios removidos.

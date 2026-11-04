@@ -1,0 +1,16 @@
+{
+  "data": "2026-11-04T19:30:19.324848-03:00",
+  "suite": {
+    "runner_original": "Looks good!",
+    "cenarios_controlados": 7,
+    "entradas_invalidas": 4,
+    "status": "aprovado"
+  },
+  "regressoes_detectadas": 2,
+  "sha256_historico_usuario": "64798fe7abcd750fb63055b74419d511e8c5fa593c26b03d5195fd51401902c8",
+  "arquivos_preservados": [
+    "sync_car.c",
+    "sync_car.h",
+    "sync_car-runner.c"
+  ]
+}
